@@ -5,6 +5,20 @@ CSV export, and an installable offline web app. There are no paid packages.
 Google Sheets saving is NOT connected in this mobile version. The existing
 Python desktop app has a separate Sheets integration.
 
+## Crop yield and profit planner update
+
+The crop profit form now includes eight published reference profiles spanning
+ragi, paddy, sunflower, maize and tomato. Select a named variety and growing
+condition to see its yield range, crop duration, region, original units and
+source. SOURCES.md documents the references and conversions.
+
+No yield is filled automatically. Use the explicit lower/upper reference
+buttons or enter your own expected saleable yield. Reference-bound profit
+examples use your entered acreage, costs and selling price. They are not
+best/worst forecasts, and no market prices are fetched or invented.
+All calculations remain offline-capable. Source links require internet.
+The dataset was checked on 9 October 2026 and is not updated automatically.
+
 ## Try it on your computer
 
 Open a terminal inside this mobile folder and run:
@@ -22,7 +36,7 @@ require a local server or an HTTPS website.
 2. Extract the supplied ZIP on your computer. Open its mobile folder.
 3. Choose Add file → Upload files in the repository.
 4. Upload the CONTENTS of mobile, not the outer folder. The repository root
-   must contain index.html, app.js, style.css, sw.js, manifest.webmanifest,
+   must contain index.html, app.js, crop-profiles.js, style.css, sw.js, manifest.webmanifest,
    icon.svg, icon-192.png, icon-512.png, .nojekyll, and this README.md.
 5. Commit with the message: Build Kannada and English farm calculator.
 6. Open Settings → Pages → Build and deployment.
@@ -39,34 +53,28 @@ No farmer records are included in the repository. Records stay in each phone's
 browser. Download CSV regularly: clearing browser data removes local records.
 Use the website from Pages settings rather than inventing its URL.
 
-## What to check
+## Acres and quintals update
 
-- Crop profit: harvest 1000, selling price 25, seed cost 1000,
-  fertiliser 2000, labour 10000, irrigation 1000, transport 2000,
-  other 2000. Revenue 25000, expenses 18000, profit 7000,
-  break-even price 18 per kg, break-even harvest 720 kg.
-- Seeds: area 100 m², row and plant spacing 50 cm, one seedling per
-  position, germination 80%. Approximately 400 positions and 500 seeds.
-- Nursery: 100 plants, losses 10%, materials 600, labour 200,
-  other 100, markup 20%. Saleable plants 90, unit cost 10, selling price 12.
-- Markets: harvest 1000; A price 25, commission 5%, transport 1000;
-  B price 24, commission 0%, transport 500. B is better by 750.
-- Switch to Kannada. Inputs stay in place and results are translated.
-- Save a named crop, reload, and download CSV. Kannada names are retained.
+Read OBJECTIVES.md for the objectives, assumptions and a 12-acre example.
+Crop profit uses acreage under the crop, yield in quintals per acre, selling
+price per quintal and costs per acre. Results separate per-acre and whole-area
+figures. One quintal is 100 kg. Market comparison uses the whole harvest in
+quintals and transport costs for the entire shipment.
 
-Seed requirements assume rectangular spacing and proportional germination.
-Paths and boundaries can reduce actual planting positions. Seed counts are
-estimates, not crop-specific recommendations. Nursery loss is rounded down
-to whole saleable plants. Markup is not profit margin.
+For 12 acres, 20 quintals per acre, INR 2200 per quintal, and costs totalling
+INR 14500 per acre, expect profit of INR 29500 per acre and INR 354000 total.
+Uniform yield, cost and price are assumed across this crop area.
 
-Translations are included; ask a Kannada-speaking farmer to review the wording
-before a wider rollout.
+To update the existing GitHub Pages app, upload the contents of this mobile
+folder to the same repository root, replacing matching files. Commit with:
+Clarify per-acre farm totals and quintal units
 
-## Google Sheets next
+Open the website online and reload after Pages deployment finishes to get the
+updated offline files. Older phone records keep their original kg labels and
+are not silently converted. The updated offline cache has a new version.
 
-GitHub Pages hosts static files and cannot keep a Google account key secret.
-Never upload credentials.json or a service-account key to this repository.
-The next step is a secure backend with user access controls, using a suitable
-free tier, plus an offline queue that syncs after the connection returns.
-Until that is configured, this app explicitly saves only to the phone and
-exports spreadsheet-compatible CSV.
+Seed requirements still use square metres and centimetres; nursery pricing
+uses plant counts. Translations should be reviewed by a Kannada-speaking farmer.
+There is no Google connection or server-side data collection. Local phone
+records and CSV export remain optional.
+

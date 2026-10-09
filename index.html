@@ -10,6 +10,7 @@
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="./icon-192.png">
   <link rel="stylesheet" href="./style.css">
+  <script src="./crop-profiles.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body>
@@ -23,13 +24,19 @@
     <nav id="calculators" aria-label="Calculators"></nav>
     <section class="workspace" aria-labelledby="form-title">
       <div class="section-head"><span class="eyebrow" data-i="estimate">YOUR ESTIMATE</span><h2 id="form-title"></h2><p id="form-note"></p></div>
+      <section id="yield-guide" class="yield-guide" aria-labelledby="yield-title">
+        <h3 id="yield-title" data-i="yieldTitle">Published crop yield references</h3>
+        <label><span data-i="profileLabel">Choose a crop, variety and growing condition</span><select id="profile"></select></label>
+        <p data-i="yieldCaution">Reference figures are not guaranteed farm yields. Match the variety, region, season and water availability; confirm suitability with your local KVK. Enter your own expected saleable yield below.</p>
+        <div id="profile-details"></div>
+      </section>
       <form id="form">
         <div class="identity"><label><span data-i="crop">Crop / plant name</span><input id="crop" type="text" maxlength="80" autocomplete="off"></label><label><span data-i="currency">Currency</span><select id="currency"><option>INR</option><option>USD</option><option>EUR</option></select></label></div>
         <div id="fields" class="fields"></div>
         <p id="error" class="error" role="alert"></p>
         <div class="actions"><button class="primary" type="submit" data-i="calculate">Calculate</button><button id="clear" type="button" data-i="clear">Clear</button></div>
       </form>
-      <section id="result" hidden aria-live="polite"><h3 data-i="results">Your results</h3><dl id="numbers"></dl><p class="assumption" data-i="assumption">Planning estimates only. Actual yield, losses and prices may differ.</p><button id="save" type="button" class="primary" data-i="save">Keep a record on this phone</button><p id="save-status" role="status"></p></section>
+      <section id="result" hidden aria-live="polite"><h3 data-i="results">Your results</h3><dl id="numbers"></dl><section id="reference-scenarios" hidden><h3 data-i="scenarioTitle">What if your saleable yield matched the reference?</h3><p data-i="scenarioNote">These examples use your acreage, price and costs with the published yield bounds. They are not best/worst forecasts; actual yield may fall outside the range.</p><dl id="scenario-numbers"></dl></section><p class="assumption" data-i="assumption">Planning estimates only. Actual yield, losses and prices may differ.</p><button id="save" type="button" class="primary" data-i="save">Keep a record on this phone</button><p id="save-status" role="status"></p></section>
     </section>
     <section class="history" aria-labelledby="history-title"><h2 id="history-title" data-i="history">Records on this phone</h2><p class="footnote" data-i="localNote">Records are stored only in this browser. Clearing browser data deletes them. Google Sheets is not connected yet.</p><div id="records"></div><div class="actions"><button id="export" type="button" data-i="export">Download CSV</button><button id="delete" type="button" data-i="delete">Delete records</button></div></section>
   </main>

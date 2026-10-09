@@ -71,14 +71,78 @@ const TEXT = {
   }
 };
 
+// Keep old labels so records from the kilogram-based version retain their units.
+Object.assign(TEXT.en, {
+  acres:'Area under this crop (acres)', yieldPerAcre:'Saleable yield per acre (quintals)',
+  priceQuintal:'Selling price per quintal',
+  seedsPerAcre:'Seed cost per acre', fertiliserPerAcre:'Fertiliser cost per acre',
+  labourPerAcre:'Labour cost per acre', waterPerAcre:'Irrigation cost per acre',
+  transportPerAcre:'Transport cost per acre', otherPerAcre:'Other costs per acre',
+  revenuePerAcre:'Revenue per acre', costPerAcre:'Expenses per acre', profitPerAcre:'Profit / loss per acre',
+  totalAcres:'Crop area (acres)', totalQuintals:'Total saleable harvest (quintals)',
+  totalRevenue:'Whole-farm revenue', totalCost:'Whole-farm expenses', totalProfit:'Whole-farm profit / loss',
+  breakPriceQuintal:'Break-even price per quintal', breakYieldPerAcre:'Break-even yield per acre (quintals)',
+  breakYieldTotal:'Whole-farm break-even harvest (quintals)',
+  perAcreHeading:'PER ACRE', farmHeading:'WHOLE CROP AREA', breakHeading:'BREAK-EVEN',
+  harvestQuintals:'Total saleable harvest (quintals)',
+  priceAQuintal:'Market A price per quintal', priceBQuintal:'Market B price per quintal',
+  transportATotal:'Market A transport cost for entire harvest', transportBTotal:'Market B transport cost for entire harvest',
+  profitNote:'Enter the acreage under this crop, yield per acre, price per quintal and all costs PER ACRE for one crop cycle. 1 quintal = 100 kg. Totals assume the same yield, price and costs per acre across this area. Do not enter whole-farm costs in per-acre fields.',
+  marketNote:'Enter the WHOLE harvest in quintals and prices per quintal. Transport costs cover the entire harvest. 1 quintal = 100 kg. Production costs are not deducted.',
+  localNote:'Records are stored only in this browser. Clearing browser data deletes them. Nothing is sent to Google or the app owner.'
+});
+Object.assign(TEXT.kn, {
+  acres:'ಈ ಬೆಳೆ ಬೆಳೆದ ವಿಸ್ತೀರ್ಣ (ಎಕರೆ)', yieldPerAcre:'ಪ್ರತಿ ಎಕರೆ ಮಾರಾಟಯೋಗ್ಯ ಇಳುವರಿ (ಕ್ವಿಂಟಲ್)',
+  priceQuintal:'ಪ್ರತಿ ಕ್ವಿಂಟಲ್ ಮಾರಾಟ ಬೆಲೆ',
+  seedsPerAcre:'ಪ್ರತಿ ಎಕರೆ ಬೀಜದ ವೆಚ್ಚ', fertiliserPerAcre:'ಪ್ರತಿ ಎಕರೆ ಗೊಬ್ಬರದ ವೆಚ್ಚ',
+  labourPerAcre:'ಪ್ರತಿ ಎಕರೆ ಕಾರ್ಮಿಕ ವೆಚ್ಚ', waterPerAcre:'ಪ್ರತಿ ಎಕರೆ ನೀರಾವರಿ ವೆಚ್ಚ',
+  transportPerAcre:'ಪ್ರತಿ ಎಕರೆ ಸಾಗಣೆ ವೆಚ್ಚ', otherPerAcre:'ಪ್ರತಿ ಎಕರೆ ಇತರೆ ವೆಚ್ಚ',
+  revenuePerAcre:'ಪ್ರತಿ ಎಕರೆ ಆದಾಯ', costPerAcre:'ಪ್ರತಿ ಎಕರೆ ವೆಚ್ಚ', profitPerAcre:'ಪ್ರತಿ ಎಕರೆ ಲಾಭ / ನಷ್ಟ',
+  totalAcres:'ಬೆಳೆ ವಿಸ್ತೀರ್ಣ (ಎಕರೆ)', totalQuintals:'ಒಟ್ಟು ಮಾರಾಟಯೋಗ್ಯ ಇಳುವರಿ (ಕ್ವಿಂಟಲ್)',
+  totalRevenue:'ಸಂಪೂರ್ಣ ಬೆಳೆ ವಿಸ್ತೀರ್ಣದ ಆದಾಯ', totalCost:'ಸಂಪೂರ್ಣ ಬೆಳೆ ವಿಸ್ತೀರ್ಣದ ವೆಚ್ಚ', totalProfit:'ಸಂಪೂರ್ಣ ಬೆಳೆ ವಿಸ್ತೀರ್ಣದ ಲಾಭ / ನಷ್ಟ',
+  breakPriceQuintal:'ವೆಚ್ಚ ಸರಿದೂಗಿಸಲು ಪ್ರತಿ ಕ್ವಿಂಟಲ್ ಬೆಲೆ', breakYieldPerAcre:'ವೆಚ್ಚ ಸರಿದೂಗಿಸಲು ಪ್ರತಿ ಎಕರೆ ಇಳುವರಿ (ಕ್ವಿಂಟಲ್)',
+  breakYieldTotal:'ವೆಚ್ಚ ಸರಿದೂಗಿಸಲು ಒಟ್ಟು ಇಳುವರಿ (ಕ್ವಿಂಟಲ್)',
+  perAcreHeading:'ಪ್ರತಿ ಎಕರೆಗೆ', farmHeading:'ಸಂಪೂರ್ಣ ಬೆಳೆ ವಿಸ್ತೀರ್ಣಕ್ಕೆ', breakHeading:'ವೆಚ್ಚ ಸರಿದೂಗಿಸಲು',
+  harvestQuintals:'ಒಟ್ಟು ಮಾರಾಟಯೋಗ್ಯ ಇಳುವರಿ (ಕ್ವಿಂಟಲ್)',
+  priceAQuintal:'ಮಾರುಕಟ್ಟೆ A: ಪ್ರತಿ ಕ್ವಿಂಟಲ್ ಬೆಲೆ', priceBQuintal:'ಮಾರುಕಟ್ಟೆ B: ಪ್ರತಿ ಕ್ವಿಂಟಲ್ ಬೆಲೆ',
+  transportATotal:'ಮಾರುಕಟ್ಟೆ A: ಸಂಪೂರ್ಣ ಇಳುವರಿಯ ಸಾಗಣೆ ವೆಚ್ಚ', transportBTotal:'ಮಾರುಕಟ್ಟೆ B: ಸಂಪೂರ್ಣ ಇಳುವರಿಯ ಸಾಗಣೆ ವೆಚ್ಚ',
+  profitNote:'ಈ ಬೆಳೆ ಬೆಳೆದ ಎಕರೆ, ಪ್ರತಿ ಎಕರೆ ಇಳುವರಿ, ಪ್ರತಿ ಕ್ವಿಂಟಲ್ ಬೆಲೆ ಮತ್ತು ಒಂದು ಬೆಳೆ ಅವಧಿಯ ಪ್ರತಿ ಎಕರೆ ವೆಚ್ಚ ನಮೂದಿಸಿ. 1 ಕ್ವಿಂಟಲ್ = 100 ಕೆಜಿ. ಎಲ್ಲಾ ಎಕರೆಗಳಲ್ಲಿ ಒಂದೇ ಇಳುವರಿ, ಬೆಲೆ ಮತ್ತು ವೆಚ್ಚ ಎಂದು ಊಹಿಸಲಾಗಿದೆ. ಪ್ರತಿ ಎಕರೆ ವೆಚ್ಚದ ಜಾಗದಲ್ಲಿ ಒಟ್ಟು ವೆಚ್ಚ ನಮೂದಿಸಬೇಡಿ.',
+  marketNote:'ಸಂಪೂರ್ಣ ಇಳುವರಿಯನ್ನು ಕ್ವಿಂಟಲ್‌ನಲ್ಲಿ ಮತ್ತು ಬೆಲೆಯನ್ನು ಪ್ರತಿ ಕ್ವಿಂಟಲ್‌ಗೆ ನಮೂದಿಸಿ. ಸಾಗಣೆ ವೆಚ್ಚ ಸಂಪೂರ್ಣ ಇಳುವರಿಗೆ ಅನ್ವಯಿಸುತ್ತದೆ. 1 ಕ್ವಿಂಟಲ್ = 100 ಕೆಜಿ. ಉತ್ಪಾದನಾ ವೆಚ್ಚ ಕಡಿತಗೊಳಿಸಿಲ್ಲ.',
+  localNote:'ದಾಖಲೆಗಳು ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಮಾತ್ರ ಇರುತ್ತವೆ. ಬ್ರೌಸರ್ ಡೇಟಾ ಅಳಿಸಿದರೆ ದಾಖಲೆಗಳು ಕಳೆದುಹೋಗುತ್ತವೆ. Google ಅಥವಾ ಆ್ಯಪ್ ಮಾಲೀಕರಿಗೆ ಏನನ್ನೂ ಕಳುಹಿಸುವುದಿಲ್ಲ.'
+});
+
+Object.assign(TEXT.en,{
+  profit:'Crop yield & profit planner', yieldTitle:'Published crop yield references',
+  profileLabel:'Choose a crop, variety and growing condition', ownYield:'Use my own yield · no reference',
+  yieldCaution:'Reference figures are not guaranteed farm yields. Match the variety, region, season and water availability; confirm suitability with your local KVK. Enter your own expected saleable yield below.',
+  referenceRange:'Published reference (quintals per acre)', originalYield:'Original published yield',
+  duration:'Crop duration (days)', source:'Read original source (online)', checked:'Source checked: 9 October 2026',
+  applyLow:'Use lower reference yield', applyHigh:'Use upper reference yield',
+  scenarioTitle:'What if your saleable yield matched the reference?',
+  scenarioNote:'These examples use your acreage, price and costs with the published yield bounds. They are not best/worst forecasts; actual yield may fall outside the range. Saving a record keeps only your main calculation.',
+  lowerScenario:'Whole-area profit at lower reference yield', upperScenario:'Whole-area profit at upper reference yield'
+});
+Object.assign(TEXT.kn,{
+  profit:'ಬೆಳೆ ಇಳುವರಿ ಮತ್ತು ಲಾಭ ಯೋಜನೆ', yieldTitle:'ಪ್ರಕಟಿತ ಬೆಳೆ ಇಳುವರಿ ಉಲ್ಲೇಖಗಳು',
+  profileLabel:'ಬೆಳೆ, ತಳಿ ಮತ್ತು ಬೆಳೆಯುವ ಪರಿಸ್ಥಿತಿ ಆಯ್ಕೆ ಮಾಡಿ', ownYield:'ನನ್ನ ಇಳುವರಿ ಬಳಸಿ · ಉಲ್ಲೇಖ ಬೇಡ',
+  yieldCaution:'ಉಲ್ಲೇಖದ ಅಂಕಿಗಳು ಖಚಿತ ಇಳುವರಿ ಅಲ್ಲ. ತಳಿ, ಪ್ರದೇಶ, ಋತು ಮತ್ತು ನೀರಿನ ಲಭ್ಯತೆ ಹೊಂದಾಣಿಕೆ ಪರಿಶೀಲಿಸಿ; ಸ್ಥಳೀಯ ಕೃಷಿ ವಿಜ್ಞಾನ ಕೇಂದ್ರದಲ್ಲಿ ಸಲಹೆ ಪಡೆಯಿರಿ. ಕೆಳಗೆ ನಿಮ್ಮ ಅಂದಾಜು ಮಾರಾಟಯೋಗ್ಯ ಇಳುವರಿ ನಮೂದಿಸಿ.',
+  referenceRange:'ಪ್ರಕಟಿತ ಉಲ್ಲೇಖ (ಪ್ರತಿ ಎಕರೆಗೆ ಕ್ವಿಂಟಲ್)', originalYield:'ಮೂಲ ಪ್ರಕಟಿತ ಇಳುವರಿ',
+  duration:'ಬೆಳೆ ಅವಧಿ (ದಿನಗಳು)', source:'ಮೂಲ ಮಾಹಿತಿಯನ್ನು ಓದಿ (ಆನ್‌ಲೈನ್)', checked:'ಮೂಲ ಪರಿಶೀಲಿಸಿದ ದಿನಾಂಕ: 9 ಅಕ್ಟೋಬರ್ 2026',
+  applyLow:'ಕೆಳ ಮಿತಿಯ ಉಲ್ಲೇಖ ಇಳುವರಿ ಬಳಸಿ', applyHigh:'ಮೇಲ್ಮಿತಿಯ ಉಲ್ಲೇಖ ಇಳುವರಿ ಬಳಸಿ',
+  scenarioTitle:'ನಿಮ್ಮ ಮಾರಾಟಯೋಗ್ಯ ಇಳುವರಿ ಉಲ್ಲೇಖಕ್ಕೆ ಸಮನಾದರೆ?',
+  scenarioNote:'ಈ ಉದಾಹರಣೆಗಳಲ್ಲಿ ನಿಮ್ಮ ಎಕರೆ, ಬೆಲೆ ಮತ್ತು ವೆಚ್ಚದೊಂದಿಗೆ ಪ್ರಕಟಿತ ಇಳುವರಿಯ ಮಿತಿಗಳನ್ನು ಬಳಸಲಾಗಿದೆ. ಇವು ಅತ್ಯುತ್ತಮ/ಅತ್ಯಂತ ಕೆಟ್ಟ ಮುನ್ಸೂಚನೆಗಳಲ್ಲ; ನಿಜವಾದ ಇಳುವರಿ ಮಿತಿಗಳ ಹೊರಗೂ ಇರಬಹುದು. ಉಳಿಸುವಾಗ ಮುಖ್ಯ ಲೆಕ್ಕಾಚಾರ ಮಾತ್ರ ದಾಖಲಿಸಲಾಗುತ್ತದೆ.',
+  lowerScenario:'ಕೆಳ ಮಿತಿಯ ಇಳುವರಿಯಲ್ಲಿ ಒಟ್ಟು ಲಾಭ', upperScenario:'ಮೇಲ್ಮಿತಿಯ ಇಳುವರಿಯಲ್ಲಿ ಒಟ್ಟು ಲಾಭ'
+});
+
 // [key, minimum, maximum (null = none), whole number only]
 const FORMS = {
-  profit:[['harvest',0.01,null,false],['price',0,null,false],['seeds',0,null,false],['fertiliser',0,null,false],['labour',0,null,false],['water',0,null,false],['transport',0,null,false],['other',0,null,false]],
+  profit:[['acres',0.01,null,false],['yieldPerAcre',0.01,null,false],['priceQuintal',0,null,false],['seedsPerAcre',0,null,false],['fertiliserPerAcre',0,null,false],['labourPerAcre',0,null,false],['waterPerAcre',0,null,false],['transportPerAcre',0,null,false],['otherPerAcre',0,null,false]],
   seed:[['area',0.01,null,false],['row',0.01,null,false],['plant',0.01,null,false],['per_position',1,null,true],['germination',0.01,100,false]],
   nursery:[['plants',1,null,true],['loss',0,100,false],['materials',0,null,false],['labour',0,null,false],['other',0,null,false],['markup',0,null,false]],
-  market:[['harvest',0.01,null,false],['price_a',0,null,false],['fee_a',0,100,false],['transport_a',0,null,false],['price_b',0,null,false],['fee_b',0,100,false],['transport_b',0,null,false]]
+  market:[['harvestQuintals',0.01,null,false],['priceAQuintal',0,null,false],['fee_a',0,100,false],['transportATotal',0,null,false],['priceBQuintal',0,null,false],['fee_b',0,100,false],['transportBTotal',0,null,false]]
 };
 const MONEY = new Set(['revenue','cost','net','breakPrice','unitCost','sellPrice','nurseryProfit','netA','netB','difference']);
+['revenuePerAcre','costPerAcre','profitPerAcre','totalRevenue','totalCost','totalProfit','breakPriceQuintal'].forEach(key=>MONEY.add(key));
 const COUNTS = new Set(['positions','seedCount','saleable']);
 
 function validate(kind, input) {
@@ -99,10 +163,16 @@ function calculate(kind, input) {
   const v = validate(kind, input);
   let r;
   if (kind === 'profit') {
-    const cost = v.seeds + v.fertiliser + v.labour + v.water + v.transport + v.other;
-    const revenue = v.harvest * v.price;
-    r = {revenue, cost, net:revenue-cost, breakPrice:cost/v.harvest,
-      breakYield:v.price ? cost/v.price : cost === 0 ? 0 : 'noBreakEven'};
+    const cost = v.seedsPerAcre + v.fertiliserPerAcre + v.labourPerAcre + v.waterPerAcre + v.transportPerAcre + v.otherPerAcre;
+    const revenue = v.yieldPerAcre * v.priceQuintal;
+    const breakYield = v.priceQuintal ? cost/v.priceQuintal : cost === 0 ? 0 : 'noBreakEven';
+    r = {
+      revenuePerAcre:revenue, costPerAcre:cost, profitPerAcre:revenue-cost,
+      totalAcres:v.acres, totalQuintals:v.yieldPerAcre*v.acres,
+      totalRevenue:revenue*v.acres, totalCost:cost*v.acres, totalProfit:(revenue-cost)*v.acres,
+      breakPriceQuintal:cost/v.yieldPerAcre, breakYieldPerAcre:breakYield,
+      breakYieldTotal:typeof breakYield === 'number' ? breakYield*v.acres : breakYield
+    };
   } else if (kind === 'seed') {
     const positions = v.area / ((v.row / 100) * (v.plant / 100));
     r = {positions:Math.floor(positions), seedCount:Math.ceil(positions*v.per_position*100/v.germination)};
@@ -114,8 +184,8 @@ function calculate(kind, input) {
     const sellPrice = unitCost * (1+v.markup/100);
     r = {saleable, unitCost, sellPrice, nurseryProfit:sellPrice*saleable-cost};
   } else {
-    const netA = v.harvest*v.price_a*(100-v.fee_a)/100-v.transport_a;
-    const netB = v.harvest*v.price_b*(100-v.fee_b)/100-v.transport_b;
+    const netA = v.harvestQuintals*v.priceAQuintal*(100-v.fee_a)/100-v.transportATotal;
+    const netB = v.harvestQuintals*v.priceBQuintal*(100-v.fee_b)/100-v.transportBTotal;
     r = {netA,netB,difference:Math.abs(netA-netB),better:netA>netB?'A':netB>netA?'B':'equal'};
   }
   if (Object.values(r).some(n => typeof n === 'number' && (!Number.isFinite(n) || Math.abs(n)>Number.MAX_SAFE_INTEGER))) throw new Error('huge');
@@ -136,7 +206,7 @@ function startApp() {
   const $ = id => document.getElementById(id);
   const STORAGE = 'raitha-records-v1';
   let language = 'en', kind = 'profit', current = null, recordId = null;
-  let records = [], installPrompt = null;
+  let records = [], installPrompt = null, profileId = '';
   const drafts = {};
   try {
     language = localStorage.getItem('raitha-language') === 'kn' ? 'kn' : 'en';
@@ -156,6 +226,41 @@ function startApp() {
     drafts[kind] = draft;
   }
   function connection() { $('connection').textContent = t(navigator.onLine?'online':'offline'); }
+  function renderProfile() {
+    $('yield-guide').hidden=kind!=='profit';
+    $('profile').replaceChildren();
+    const manual=document.createElement('option');manual.value='';manual.textContent=t('ownYield');$('profile').append(manual);
+    CROP_PROFILES.forEach(profile=>{
+      const option=document.createElement('option');option.value=profile.id;option.textContent=profile.name[language==='kn'?1:0];$('profile').append(option);
+    });
+    $('profile').value=profileId;
+    $('profile-details').replaceChildren();
+    const profile=CROP_PROFILES.find(p=>p.id===profileId);
+    if(!profile)return;
+    const low=quintalsPerAcre(profile.low,profile.unit),high=quintalsPerAcre(profile.high,profile.unit);
+    const lines=[
+      t('referenceRange')+': '+low.toFixed(2)+'–'+high.toFixed(2),
+      t('originalYield')+': '+profile.low+'–'+profile.high+' '+profile.unit,
+      t('duration')+': '+profile.duration,
+      profile.region[language==='kn'?1:0],
+      profile.institution+' · '+profile.edition,
+      t('checked')
+    ];
+    lines.forEach(line=>{const p=document.createElement('p');p.textContent=line;$('profile-details').append(p);});
+    const link=document.createElement('a');link.href=profile.url;link.target='_blank';link.rel='noopener noreferrer';link.textContent=t('source');$('profile-details').append(link);
+    const actions=document.createElement('div');actions.className='actions';
+    for(const [label,value]of [['applyLow',low],['applyHigh',high]]){
+      const button=document.createElement('button');button.type='button';button.textContent=t(label);
+      button.onclick=()=>{
+        const field=document.querySelector('[name="yieldPerAcre"]');field.value=value.toFixed(4);
+        $('crop').value=profile.name[language==='kn'?1:0];
+        capture();invalidate();field.focus();
+      };
+      actions.append(button);
+    }
+    $('profile-details').append(actions);
+  }
+  $('profile').onchange=()=>{profileId=$('profile').value;invalidate();renderProfile();};
   function render() {
     document.documentElement.lang = language;
     document.title = language === 'kn' ? 'ರೈತ · ಕೃಷಿ ಲೆಕ್ಕಾಚಾರ' : 'Raitha · Farm Calculator';
@@ -187,7 +292,7 @@ function startApp() {
       input.value = drafts[kind]?.[key] ?? '';
       label.append(span,input); $('fields').append(label);
     });
-    connection(); renderResults(); renderRecords();
+    connection(); renderProfile(); renderResults(); renderRecords();
   }
   function invalidate() {
     current=null; recordId=null; $('result').hidden=true; $('error').textContent=''; $('save-status').textContent='';
@@ -197,9 +302,31 @@ function startApp() {
     if (!current) return;
     $('numbers').replaceChildren();
     for (const [key,value] of Object.entries(current.results)) {
+      if (kind === 'profit' && ['revenuePerAcre','totalAcres','breakPriceQuintal'].includes(key)) {
+        const heading = document.createElement('dt');
+        heading.className = 'result-group';
+        heading.textContent = t(key === 'revenuePerAcre' ? 'perAcreHeading' : key === 'totalAcres' ? 'farmHeading' : 'breakHeading');
+        $('numbers').append(heading);
+      }
       const div = document.createElement('div'), dt=document.createElement('dt'), dd=document.createElement('dd');
       dt.textContent=t(key); dd.textContent=format(key,value,$('currency').value);
       div.append(dt,dd); $('numbers').append(div);
+    }
+    $('reference-scenarios').hidden=true;
+    const profile=kind==='profit'?CROP_PROFILES.find(p=>p.id===profileId):null;
+    if(profile){
+      $('scenario-numbers').replaceChildren();
+      try{
+        for(const [label,bound]of [['lowerScenario',profile.low],['upperScenario',profile.high]]){
+          const yieldValue=quintalsPerAcre(bound,profile.unit);
+          const scenario=calculate('profit',{...current.values,yieldPerAcre:yieldValue});
+          const div=document.createElement('div'),dt=document.createElement('dt'),dd=document.createElement('dd');
+          dt.textContent=t(label)+' ('+yieldValue.toFixed(2)+' q/acre)';
+          dd.textContent=format('totalProfit',scenario.results.totalProfit,$('currency').value);
+          div.append(dt,dd);$('scenario-numbers').append(div);
+        }
+        $('reference-scenarios').hidden=false;
+      }catch{/* Main estimate remains valid if an extreme scenario overflows. */}
     }
   }
   function renderRecords() {
