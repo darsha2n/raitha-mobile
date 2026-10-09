@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#145c35">
+  <meta name="description" content="Farm calculators in Kannada and English: crop profit, seed requirements, nursery pricing and market comparison.">
+  <title>Raitha · Farm Calculator</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header><div class="brand"><span class="mark" aria-hidden="true">R</span><div><strong data-i="brand">Raitha</strong><small data-i="subtitle">Farm & nursery calculator</small></div></div>
+    <button id="language" class="language" type="button" aria-label="Switch to Kannada">ಕನ್ನಡ</button>
+  </header>
+  <main>
+    <div class="topline"><span id="connection"></span><button id="install" class="quiet" data-i="install" type="button">Add to phone</button></div>
+    <h1 data-i="heading">Plan your next harvest.</h1>
+    <p class="intro" data-i="intro">Choose a calculator. Enter your own farm figures.</p>
+    <nav id="calculators" aria-label="Calculators"></nav>
+    <section class="workspace" aria-labelledby="form-title">
+      <div class="section-head"><span class="eyebrow" data-i="estimate">YOUR ESTIMATE</span><h2 id="form-title"></h2><p id="form-note"></p></div>
+      <form id="form">
+        <div class="identity"><label><span data-i="crop">Crop / plant name</span><input id="crop" type="text" maxlength="80" autocomplete="off"></label><label><span data-i="currency">Currency</span><select id="currency"><option>INR</option><option>USD</option><option>EUR</option></select></label></div>
+        <div id="fields" class="fields"></div>
+        <p id="error" class="error" role="alert"></p>
+        <div class="actions"><button class="primary" type="submit" data-i="calculate">Calculate</button><button id="clear" type="button" data-i="clear">Clear</button></div>
+      </form>
+      <section id="result" hidden aria-live="polite"><h3 data-i="results">Your results</h3><dl id="numbers"></dl><p class="assumption" data-i="assumption">Planning estimates only. Actual yield, losses and prices may differ.</p><button id="save" type="button" class="primary" data-i="save">Keep a record on this phone</button><p id="save-status" role="status"></p></section>
+    </section>
+    <section class="history" aria-labelledby="history-title"><h2 id="history-title" data-i="history">Records on this phone</h2><p class="footnote" data-i="localNote">Records are stored only in this browser. Clearing browser data deletes them. Google Sheets is not connected yet.</p><div id="records"></div><div class="actions"><button id="export" type="button" data-i="export">Download CSV</button><button id="delete" type="button" data-i="delete">Delete records</button></div></section>
+  </main>
+  <dialog id="install-guide"><h2 data-i="install">Add to phone</h2><p data-i="installHelp">On Android, open this app in Chrome. Tap the three-dot menu, then “Install app” or “Add to Home screen”. Open the app online once before using it offline.</p><button id="close-guide" type="button" data-i="close">Close</button></dialog>
+</body>
+</html>
